@@ -34,9 +34,9 @@ public class Main {
                         );
 
                         if (authService.signUp(newUser)) {
-                            System.out.println("This username already exists!");
-                        }else {
                             System.out.println("User signed up successfully!");
+                        } else {
+                            System.out.println("This username already exists!");
                         }
                     } catch(IllegalArgumentException e) {
                         System.out.println("Error: " + e.getMessage());
