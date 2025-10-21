@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.users.User;
+import org.example.users.Username;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +43,9 @@ public class AuthService {
             System.out.println("No user is currently logged in.");
             return false;
         }
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
     }
 }
