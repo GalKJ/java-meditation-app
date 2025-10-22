@@ -15,7 +15,13 @@ public class Main {
         while (running) {
             System.out.println("\n=== Meditation App ===");
             System.out.println("1. Sign up");
-            System.out.println("2. Log in");
+
+            if (authService.getLoggedInUser() == null) {
+                System.out.println("2. Log in");
+            } else {
+                System.out.println("2. Log out");
+            }
+
             System.out.println("3. Exit");
             System.out.print("Choose an option: ");
 
@@ -43,15 +49,20 @@ public class Main {
                 }
                     break;
                 case "2":
-                    System.out.print("Enter username: ");
-                    String loginUsername = scanner.nextLine();
-                    System.out.print("Enter password: ");
-                    String loginPassword = scanner.nextLine();
+                    if (authService.getLoggedInUser() == null) {
+                        System.out.print("Enter username: ");
+                        String loginUsername = scanner.nextLine();
+                        System.out.print("Enter password: ");
+                        String loginPassword = scanner.nextLine();
 
-                    if (authService.logIn(loginUsername, loginPassword)) {
+                        if (authService.logIn(loginUsername, loginPassword)) {
                             System.out.println("Login successful! Welcome " + loginUsername);
+                        } else {
+                            System.out.println("Login failed. Invalid username or password.");
+                        }
+
                     } else {
-                        System.out.println("Login failed. Invalid username or password.");
+                        System.out.println("User " + authService.getLoggedInUser().getUsername().getValue() + " logged out.");
                     }
                     break;
                 case "3":

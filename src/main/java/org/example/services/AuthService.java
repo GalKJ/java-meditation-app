@@ -9,6 +9,7 @@ import java.util.List;
 public class AuthService {
     private final List<User> users = new ArrayList<>();
     private User loggedInUser = null;
+    private
 
     public boolean signUp(User newUser) {
 
@@ -24,6 +25,10 @@ public class AuthService {
     }
 
     public boolean logIn(String username, String password) {
+        if (loggedInUser != null) {
+            return false;
+        }
+
         for (User user : users) {
             if (user.getUsername().getValue().equals(username)
                     && user.getPassword().matches(password)) {
@@ -34,18 +39,25 @@ public class AuthService {
         return false;
     }
 
-    public boolean logOut() {
+    public String logOut() {
         if (loggedInUser != null) {
-//            System.out.println("User " + loggedInUser.getUsername().getValue() + " logged out.");
+            String username = loggedInUser.getUsername().getValue();
             loggedInUser = null;
-            return true;
+            return username;
         } else {
-            System.out.println("No user is currently logged in.");
-            return false;
+            return null;
         }
     }
 
     public User getLoggedInUser() {
         return loggedInUser;
+    }
+
+    public boolean userLoggedIn() {
+        if (loggedInUser) {
+            return true;
+        }
+        return false;
+        }
     }
 }
