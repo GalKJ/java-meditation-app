@@ -15,4 +15,9 @@ public class Password {
     public String getEncrypted() {
         return value;
     }
+
+    public boolean matches(String plain) {
+        return value.equals(encrypt(plain));
+    }
+
 }
