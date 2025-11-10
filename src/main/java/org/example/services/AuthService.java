@@ -9,7 +9,6 @@ import java.util.List;
 public class AuthService {
     private final List<User> users = new ArrayList<>();
     private User loggedInUser = null;
-    private
 
     public boolean signUp(User newUser) {
 
@@ -52,12 +51,5 @@ public class AuthService {
     public User getLoggedInUser() {
         return loggedInUser;
     }
-
-    public boolean userLoggedIn() {
-        if (loggedInUser) {
-            return true;
-        }
-        return false;
-        }
     }
-}
+
