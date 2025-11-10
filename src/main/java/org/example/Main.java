@@ -56,13 +56,13 @@ public class Main {
                         String loginPassword = scanner.nextLine();
 
                         if (authService.logIn(loginUsername, loginPassword)) {
-                            System.out.println("Login successful! Welcome " + loginUsername);
+                            System.out.println("Login successful! Welcome " + authService.getLoggedInUser().getUsername().getValue());
                         } else {
                             System.out.println("Login failed. Invalid username or password.");
                         }
 
                     } else {
-                        System.out.println("User " + authService.getLoggedInUser().getUsername().getValue() + " logged out.");
+                        System.out.println("User " + authService.logOut() + " logged out.");
                     }
                     break;
                 case "3":
